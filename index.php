@@ -6,6 +6,18 @@ require('controller/memberController.php');
 require('controller/clubController.php');
 
 if(isset($_GET['p'])){
+    if($_GET['p'] == 'form-inscription'){
+        displayInscription();
+    }
+    if($_GET['p'] == 'inscription')
+    {
+        if(!empty($_POST['identifiant'])
+        && !empty($_POST['pass'])){
+            inscription($_POST['identifiant'], $_POST['pass']);
+        }else{
+            echo 'Erreur : tous les champs ne sont pas remplis !';
+        }
+    }
     if($_GET['p'] == 'connexion'){
         if(!empty($_POST['identifiant'])
         && !empty($_POST['pass'])){
@@ -17,14 +29,7 @@ if(isset($_GET['p'])){
     if($_GET['p'] == 'form-login'){
         displayLogin();
     }
-    if($_GET['p'] == 'inscription'){
-        if(!empty($_POST['identifiant'])
-        && !empty($_POST['pass'])){
-            login($_POST['identifiant'], $_POST['pass']);
-        }else{
-            echo 'Erreur : tous les champs ne sont pas remplis !';
-        }
-    }
+    
     if(isset($_SESSION['identifiant'])){
         //Route 1 : Gestion des adhérents : index.php?p=gestion-adherant
         if($_GET['p'] == 'gestion-adherant'){
@@ -114,7 +119,9 @@ if(isset($_GET['p'])){
             display404page();
         }
     }else{
-        displayLogin();
+        if($_GET['p'] != 'form-inscription'){
+            displayLogin();
+        }
     }
 }else{
     displayLogin();

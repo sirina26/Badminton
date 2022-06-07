@@ -3,9 +3,9 @@
 ob_start(); ?> 
 <div class="signin-page">
     <main class="form-signin">
-        <?php if(isset($error)) : ?>
+        <?php if(isset($error)): ?>
             <div class="alert alert-danger" role="alert">
-                <?= $error; ?>
+                <?= $error?>
             </div>
         <?php endif; ?>
         <form method="POST" action="index.php?p=inscription">

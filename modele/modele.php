@@ -128,6 +128,30 @@ function getUser($id, $pass){
 
 }
 
+function isExist($id){
+    $bdd = dbConnect();
+    $req = "SELECT * FROM user WHERE usernameUser = ?";
+
+    $res = $bdd->prepare($req);
+    $res->execute(array($id));
+
+    if($res->rowCount() > 0){
+        $user_info = $res->fetch();
+        return $user_info;
+    }
+    return false;
+}
+function postUser($id, $pass){
+
+    $bdd = dbConnect();
+
+    $req = 'INSERT INTO user (usernameUser, passUser) VALUES (?, ?)';
+    $res = $bdd->prepare($req);
+
+    $addedUser = $res->execute(array($id, $pass));
+    return $addedUser;
+}
+
 function search($nom){
     $bdd = dbConnect();
 
@@ -149,8 +173,8 @@ function postClub($nom, $adresse, $cp, $num, $email){
     $req = 'INSERT INTO club (name, adresse, num, cp, email) VALUES (?, ?, ?, ?, ?)';
     $res = $bdd->prepare($req);
 
-    $added = $res->execute(array($nom, $adresse, $cp, $num, $email));
-    return $added;
+    $addedUser = $res->execute(array($nom, $adresse, $cp, $num, $email));
+    return $addedUser;
 }
 
 /**

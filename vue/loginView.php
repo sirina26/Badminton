@@ -19,10 +19,13 @@ ob_start(); ?>
             <input type="password" class="form-control" id="pass" placeholder="Mot de passe" name="pass" required>
             <label for="pass">Mot de passe</label>
             </div>
-            <button class="w-100 btn btn-lg btn-primary" name="connect" type="submit">Connexion</button>
+            <button class="w-100 btn btn-lg btn-primary" name="connect" type="submit">Connexion</button> 
+            Pas encore de compte ?<a href="index.php?p=form-inscription" name="inscription" type="submit">Inscriver vous!!</button>
         </form>
     </main>
+   
 </div>
+
 <?php $content = ob_get_clean(); 
 
 require('layout/template-nomenu.php');
